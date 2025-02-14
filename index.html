@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWE Feedback System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        .upload-section {
+            text-align: center;
+            margin: 20px;
+        }
+        .feedback-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .document-viewer {
+            width: 50%;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .highlight {
+            padding: 2px 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+        .grammar { background-color: #ffcccc; }
+        .coherence { background-color: #ffffcc; }
+        .academic { background-color: #ccffcc; }
+        .comment-panel {
+            width: 40%;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .comment {
+            background: #e8e8e8;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+        textarea {
+            width: 100%;
+            padding: 5px;
+        }
+        .revision-tracker {
+            text-align: center;
+            padding: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .feedback-popup {
+            display: none;
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        .audio-feedback {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AI-Powered Automated Writing Evaluation (AWE)</h1>
+    </header>
+    
+    <main>
+        <section class="upload-section">
+            <input type="file" id="uploadEssay" accept=".docx, .pdf">
+            <button onclick="uploadFile()">Upload Essay</button>
+        </section>
+        
+        <section class="feedback-container">
+            <div class="document-viewer">
+                <p><span class="highlight grammar" onclick="showFeedback(this, 'Grammar issue: Consider revising this sentence.')">This is an example sentence with a grammar error.</span></p>
+                <p><span class="highlight coherence" onclick="showFeedback(this, 'Coherence issue: This paragraph lacks logical flow.')">This paragraph lacks coherence and needs improvement.</span></p>
+                <p><span class="highlight academic" onclick="showFeedback(this, 'Academic tone: Consider using a more formal expression.')">Consider using a more academic tone in this sentence.</span></p>
+                <div id="feedbackPopup" class="feedback-popup">
+                    <p id="feedbackText"></p>
+                    <textarea placeholder="Add your response..."></textarea>
+                    <button onclick="hideFeedback()">Close</button>
+                    <div class="audio-feedback">
+                        <label for="audioFile">Upload Audio Feedback:</label>
+                        <input type="file" id="audioFile" accept="audio/*">
+                        <button onclick="playAudioFeedback()">Play</button>
+                    </div>
+                    <button onclick="requestFeedback()">Request Additional Feedback</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="revision-tracker">
+            <h2>Revision History</h2>
+            <ul>
+                <li>Draft 1 - Initial Submission</li>
+                <li>Draft 2 - Revised based on AI Feedback</li>
+                <li>Draft 3 - Final Submission after Instructor Review</li>
+            </ul>
+        </section>
+    </main>
+    
+    <script>
+        function uploadFile() {
+            alert("File uploaded successfully!");
+        }
+        
+        function showFeedback(element, feedback) {
+            var popup = document.getElementById('feedbackPopup');
+            var feedbackText = document.getElementById('feedbackText');
+            feedbackText.innerText = feedback;
+            
+            popup.style.display = 'block';
+            popup.style.top = element.offsetTop + 30 + 'px';
+            popup.style.left = element.offsetLeft + 'px';
+        }
+        
+        function hideFeedback() {
+            document.getElementById('feedbackPopup').style.display = 'none';
+        }
+        
+        function playAudioFeedback() {
+            alert("Playing audio feedback (This would be replaced by an actual audio player).");
+        }
+        
+        function requestFeedback() {
+            alert("Feedback request has been sent to the instructor.");
+        }
+    </script>
+</body>
+</html>
+
